@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A little bit o' Asynchronous Django</title>
+</head>
+<body>
+
+<h1>Playing with Async in Django</h1>
+
+<h3><a href="{% url 'simple-sleep' %}">Simple sync sleep</a></h3>
+<p>Sync view that sleeps for 250ms before returning a JSON response</p>
+
+<h3><a href="{% url 'sync-hello-world' %}">Hello world (sync)</a></h3>
+<p>Synchronous return of some plain HTML</p>
+
+<h3><a href="{% url 'async-hello-world' %}">Hello world (async)</a></h3>
+<p>Asynchronous return of some plain HTML</p>
+
+<h3><a href="{% url 'api-calling' 300 %}">api_calling (async)</a></h3>
+<p>Waits for API calls to be made, 30 API calls in 5 call chunks,
+    with a URL specified wait.</p>
+
+<h3><a href="{% url 'sync-list' %}">Model list (sync)</a></h3>
+<p>Simple list view</p>
+
+<h3><a href="{% url 'async-list' 300 %}">Model list (async)</a></h3>
+<p>Same result but in an async view using URL-configured sleep duration
+    for the same 30 faked API calls in 5 call chunks.</p>
+
+<h3><a href="{% url 'async-update' 300 %}">Async update() queryset</a></h3>
+<p>This was the first attempt at saving data.</p>
+
+<h3><a href="{% url 'async-save' 1 300 %}">Async save() on model instance</a></h3>
+<p>Uses the <code>?text=</code> query parameter to update the message and save the instance.</p>
+
+<h3><a href="{% url 'async-detail-view' 1 300 %}">Async class based detail view</a></h3>
+<p>Just a class based view, DetailView, but async.</p>
+
+<h3><a href="{% url 'waiting-sequentially' %}">Awaiting sequentially</a></h3>
+<p>Sequences two awaiting faked-API call groups. Each call group handles 30 API calls
+    in 5 call groups with 500ms waits, so the total waiting time per call should be >3s.</p>
+<p>Total number of API requests is 60, total response time is >6s.</p>
+
+<h3><a href="{% url 'waiting-concurrently' %}">Awaiting concurrently</a></h3>
+<p>Concurrently waits for two faked-API call groups. Each call group handles 30 API calls
+    in 5 call groups with 500ms waits, so the total waiting time per call should be >3s.</p>
+<p>Total number of API requests is 60, total response time is >3s.</p>
+
+</body>
+</html>

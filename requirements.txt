@@ -1,0 +1,6 @@
+daphne==2.5.0
+uvicorn==0.11.5
+gunicorn==20.0.4
+uwsgi==2.0.19
+Hypercorn==0.10.1
+trio==0.16.0

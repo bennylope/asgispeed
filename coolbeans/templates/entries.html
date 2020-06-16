@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ALl Entries</title>
+</head>
+<body>
+
+<h1>Here are all the entries</h1>
+<p>If this is an updating view, the counts will be incremented</p>
+{% if entries %}
+    {% for entry in entries %}
+        <li>{{ entry }}</li>
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>
